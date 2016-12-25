@@ -125,3 +125,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     STATIC_PATH,
 )
+
+# Development media server useful for debugging but should not be used in production environment
+# For deployment, see alternative solution for file uploading to handle high volumne of requests in secure manner
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to media directory
+
