@@ -14,17 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
+from django.conf.urls.static import static
 from django.contrib import admin
+from rango import views
 
-urlpatterns = patterns('', 
-    url(r'^admin/', include(admin.site.urls)),
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
     url(r'^rango/', include('rango.urls')),
-)
+]
 
 if settings.DEBUG:
-	urlpatterns += patterns(
-		'django.views.static', 
-		(r'^media/(?P<path>.*)', 
-		'serve',
-		{'document_root': settings.MEDIA_ROOT}), )
+	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
