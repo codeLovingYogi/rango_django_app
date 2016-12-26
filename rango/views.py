@@ -7,8 +7,11 @@ def index(request):
 	# Order categories by number of likes in descending order
 	# Retrieve top 5 only, or all if less than 5
 	# Place list in context_dict dictionary which will be passed to template engine
-	category_list = Category.objects.order_by('-likes')[:5]
-	context_dict = {'categories': category_list}
+	top_category_list = Category.objects.order_by('-likes')[:5]
+	context_dict = {'categories': top_category_list}
+
+	top_page_list = Page.objects.order_by('-views')[:5]
+	context_dict['top_pages'] = top_page_list
 
 	# Request a rendered request to send to the client
 	# Making use of shortcut function to make our lives easier
